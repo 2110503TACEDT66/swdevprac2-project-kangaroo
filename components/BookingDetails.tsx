@@ -13,7 +13,6 @@ interface CarDetailsProps{
 }
 
 export function BookingDetails({isOpen, closeModal, car} : CarDetailsProps) {
-    var count = 0;
     return(
         <>
         <Transition appear show={isOpen} as={Fragment}>
@@ -78,29 +77,18 @@ export function BookingDetails({isOpen, closeModal, car} : CarDetailsProps) {
                                 ))}
                             </div> */}
                 
-                
-
-<div className="mt-3 flex flex-wrap gap-4">
-    
-    {Object.entries(car).map(([key, value]) => {
-        if (count < 8) {
-            count++;
-            return (
-                ['Brand', 'Model', 'Year', 'Color', 'FeePerDay'].includes(key) && (
-                    <div className="flex justify-between w-full gap-5 text-right" key={key}>
-                        <div className="flex justify-between w-full gap-5 text-right">
-                            <h4 className="text-gray capitalize">{key.split("_").join(" ")}</h4>
-                            <p className="text-black-100 font-semibold">{value}</p>
-                        </div>
-                    </div>
-                )
-            );
-        } else {
-            return null; // Return null or any other fallback JSX when the limit is reached
-        }
-    })}
-</div>
-
+                            <div className="mt-3 flex flex-wrap gap-4">
+                                {Object.entries(car).map(([key, value]) => (
+                                    <div className="flex justify-between w-full gap-5 text-right" key={key}>
+                                    {['Brand', 'Model', 'Year', 'Color','FeePerDay'].includes(key) && (
+                                        <div className="flex justify-between w-full gap-5 text-right" key={key}>
+                                            <h4 className="text-gray capitalize">{key.split("_").join(" ")}</h4>
+                                            <p className="text-black-100 font-semibold">{value}</p>
+                                        </div>
+                                    )}
+                                </div>
+                                ))}
+                            </div>
                             <div className="car-card__btn-container">
                     <CustomButton title="Booking" 
                     containerStyles="w-full py-[16px] rounded-full bg-primary-blue" textStyles="text-white text-[14px] 

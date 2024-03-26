@@ -18,14 +18,20 @@ export default async function Navbar() {
                 </Link>
 
                 <div className="flex gap-5">
-                    <IconButton href="/booking" className="animate-fade-down animate-delay-500">
-                        <DirectionsCarIcon sx={{ fontSize: 30 }}/>
-                    </IconButton>
-
-                    <IconButton href="/user" className="animate-fade-down animate-delay-500">
-                        <AccountCircleIcon sx={{ fontSize: 30 }}/>
-                    </IconButton>
-
+                    {
+                        session ?
+                        <IconButton href="/booking" className="animate-fade-down animate-delay-500">
+                            <DirectionsCarIcon sx={{ fontSize: 30 }}/>
+                        </IconButton>
+                        : null
+                    }
+                    {
+                        session ? 
+                        <IconButton href="/user" className="animate-fade-down animate-delay-500">
+                            <AccountCircleIcon sx={{ fontSize: 30 }}/>
+                        </IconButton>
+                        : null
+                    }
                     {
                         session ?
                         <Link href="/api/auth/signout">

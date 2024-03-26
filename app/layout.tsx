@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import NextAuthProvider from "@/providers/NextAuthProvider";
+
 import "./globals.css";
 
 import Navbar from '../components/Navbar'
@@ -10,18 +14,23 @@ export const metadata: Metadata = {
   description: "Discover the best cars in the world.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const nextAuthSession = await getServerSession(authOptions)
+
   return (
     <html lang="en">
       <body className="relative">
-        <Navbar/>
-        {children}
-        <Footer/>
-        </body>
+        <NextAuthProvider session={ nextAuthSession }>
+          <Navbar/>
+          {children}
+          <Footer/>
+        </NextAuthProvider>
+      </body>
     </html>
   );
 }

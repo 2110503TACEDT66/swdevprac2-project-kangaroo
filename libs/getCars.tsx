@@ -5,7 +5,7 @@ export async function getCars() :Promise<GetCars>{
     const response = await fetch("http://localhost:5050/api/v1/cars")
      //console.log( "hi",await response.json())
     if(!response.ok){
-        throw new Error("Fail to fetch cars")
+        throw new Error("Failed to fetch cars")
     }
     return await response.json()
     

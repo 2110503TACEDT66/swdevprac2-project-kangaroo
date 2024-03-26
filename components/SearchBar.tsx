@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import Image from "next/image";
-import SearchManufaturer from "./SearchManufaturer";
+import SearchManufacturer from "./SearchManufaturer";
 import { useRouter } from "next/navigation";
 
 const SearchBotton = ({otherClasses} : {otherClasses:string}) =>(
@@ -10,7 +10,7 @@ const SearchBotton = ({otherClasses} : {otherClasses:string}) =>(
     </button>
 )
 export default function SearchBar() {
-    const [manufacturer, setManufacturer] = useState('')
+    const [manufacturer, setManuFacturer] = useState('')
     const [model, setModel] = useState('')
     const router = useRouter();
 
@@ -41,19 +41,33 @@ export default function SearchBar() {
         router.push(newPathName)
     }
     return(
-        <form className="searchbar" onSubmit={handleSearch}>
-            <div className="searchbar__item">
-                <SearchManufaturer manufacturer={manufacturer}
-                setManufacturer={setManufacturer}/>
-                <SearchBotton otherClasses="sm:hidden"/>
-            </div>
-            <div className="searchbar_item">
-                <Image src="/model-icon.png" width={25} height={25}  className="absolute w-[20px] h-[20px] ml-4"  alt="car model"/>
-                <input type="text" name="model" value={model} onChange={(e)=>setModel(e.target.value)} 
-                placeholder="Tiguan" className="searchbar__input"/>
-                <SearchBotton otherClasses="sm:hidden"/>     
-            </div>
-            <SearchBotton otherClasses="max-sm:hidden"/>
-        </form> 
+        <form className='searchbar' onSubmit={handleSearch}>
+      <div className='searchbar__item'>
+        <SearchManufacturer
+          manufacturer={manufacturer}
+          setManuFacturer={setManuFacturer}
+        />
+        <SearchBotton otherClasses='sm:hidden' />
+      </div>
+      <div className='searchbar__item'>
+        <Image
+          src='/model-icon.png'
+          width={25}
+          height={25}
+          className='absolute w-[20px] h-[20px] ml-4'
+          alt='car model'
+        />
+        <input
+          type='text'
+          name='model'
+          value={model}
+          onChange={(e) => setModel(e.target.value)}
+          placeholder='Tiguan...'
+          className='searchbar__input'
+        />
+        <SearchBotton otherClasses='sm:hidden' />
+      </div>
+      <SearchBotton otherClasses='max-sm:hidden' />
+    </form>
     );
 };

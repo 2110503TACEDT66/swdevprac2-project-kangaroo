@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState, Fragment } from "react";
 import { manufacturers } from "@/constants";
 import { it } from "node:test";
-export default function SearchManufaturer({manufacturer, setManufacturer} : SearchManufacturersProps) {
+export default function SearchManufaturer({manufacturer, setManuFacturer} : SearchManufacturersProps) {
     const [query, setQuery] = useState('')
 
     const filteredManufacturers = 
@@ -16,7 +16,7 @@ export default function SearchManufaturer({manufacturer, setManufacturer} : Sear
     ))
     return(
         <div className="search-manufacturer">
-            <Combobox value={manufacturer} onChange={setManufacturer}>
+            <Combobox value={manufacturer} onChange={setManuFacturer}>
                 <div className="relative w-full">
                     <Combobox.Button className="absolute top-[14px]">
                         <Image src="/car-logo.svg" alt="Car Logo" width={20} height={20} className="ml-4"/>

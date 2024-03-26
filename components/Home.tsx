@@ -1,6 +1,7 @@
 'use client'
 
 import { CarCard } from "@/components/CarCard";
+import { BookingCard } from "@/components/BookingCard";
 import CustomFilter from "@/components/CustomFilter";
 import Hero from "@/components/Hero";
 import SearchBar from "@/components/SearchBar";
@@ -43,7 +44,7 @@ import { useEffect, useState } from "react";
               {!isDataEmpty ? (
                 <section>
                  <div className="home__cars-wrapper">
-                    {cars?.map((car:any) => (<CarCard car={car} />))}
+                    {cars?.map((car:any) => (<BookingCard car={car}/>))}
                  </div>
                 </section>
               ) : (

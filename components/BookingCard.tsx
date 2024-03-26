@@ -8,8 +8,8 @@ import { BookingDetails } from "./BookingDetails";
 import getCar from "@/libs/getCar";
 import PictureParser from "./pictureParser";
 
-export function BookingCard({booking} : {booking:Booking}) {
-    const { bookingDate, user } = booking
+export function BookingCard({booking, token} : {booking:Booking, token: string}) {
+    const { bookingDate } = booking
     const [ bookedCar, setBookedCar ] = useState<CarProps|null>(null)
 
     useEffect(() => {
@@ -87,7 +87,7 @@ export function BookingCard({booking} : {booking:Booking}) {
                 </div>
             </div>
 
-            <BookingDetails isOpen={isOpen} closeModal={()=>{setIsOpen(false) }} car={bookedCar}/>
+            <BookingDetails isOpen={isOpen} closeModal={()=>{setIsOpen(false) }} car={bookedCar} bookingID={booking._id} token={token}/>
         </div>
     ): null;
 };

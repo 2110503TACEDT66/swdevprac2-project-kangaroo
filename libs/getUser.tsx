@@ -7,7 +7,7 @@ export default async function getUser(token: string){
     });
 
     if(!response.ok){
-        throw new Error("Fail to find user")
+        throw new Error("Failed to fetch user")
     }
 
     return await response.json()

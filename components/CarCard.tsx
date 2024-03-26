@@ -8,17 +8,10 @@ import { CarDetails } from "./CarDetails";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import InvertColorsIcon from "@mui/icons-material/InvertColors";
 import AspectRatioIcon from "@mui/icons-material/AspectRatio";
+import PictureParser from "./pictureParser";
 
 export function CarCard({ car }: { car: CarProps }) {
-  const { Brand, Model, Year, Color, FeePerDay, LicensePlate, PictureCover } =
-    car;
-
-
-  function removeAmpFromPicture(url: string): string {
-    if (!url) {
-      return url;
-    } else return url.replace("amp;", "");
-  }
+  const { Brand, Model, Year, Color, FeePerDay, LicensePlate, PictureCover } = car;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,7 +29,7 @@ export function CarCard({ car }: { car: CarProps }) {
       </p>
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
-          src={removeAmpFromPicture(PictureCover)}
+          src={PictureParser(PictureCover)}
           alt="car model"
           fill
           priority

@@ -5,6 +5,9 @@ import { useState } from "react";
 import CustomButton from "./CustomButton";
 import Image from "next/image";
 import { CarDetails } from "./CarDetails";
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import InvertColorsIcon from '@mui/icons-material/InvertColors';
+import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 
 export function CarCard({car} : {car:CarProps}) {
     const { Brand, Model, Year, Color, FeePerDay, LicensePlate} = car;
@@ -32,19 +35,19 @@ export function CarCard({car} : {car:CarProps}) {
             <div className="relative flex w-full mt-2">
                 <div className="flex group-hover:invisible w-full justify-between text-gray">
                     <div className="flex flex-col justify-center items-center gap-2">
-                        <Image src="/calendar.png" alt="year" width={20} height={20}/>
+                        <CalendarTodayIcon/>
                         <p className="text-[14px] font-medium">
                             {Year}
                         </p>
                     </div>
                     <div className="flex flex-col justify-center items-center gap-2">
-                        <Image src="/pantone.png" alt="year" width={20} height={20}/>
+                        <InvertColorsIcon/>
                         <p className="text-[14px] font-medium">
                             {Color}
                         </p>
                     </div>
                     <div className="flex flex-col justify-center items-center gap-2">
-                        <Image src="/license-plate.png" alt="year" width={20} height={20}/>
+                        <AspectRatioIcon/>
                         <p className="text-[14px] font-medium">
                             {LicensePlate}
                         </p>

@@ -1,16 +1,10 @@
 'use client'
-
-import { CarCard } from "@/components/CarCard";
-import CustomFilter from "@/components/CustomFilter";
-import Hero from "@/components/Hero";
-import SearchBar from "@/components/SearchBar";
 import { getCars } from "@/libs/getCars";
 import { CarItems } from "@/types";
 import { useEffect, useState } from "react";
 import {BookingCard} from "@/components/BookingCard"
 
-
-    export default  function BookingLists() {
+    export default function BookingLists() {
     
         const [cars, setCars] = useState<CarItems[]|null>(null);
       

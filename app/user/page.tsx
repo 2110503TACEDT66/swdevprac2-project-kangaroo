@@ -1,23 +1,24 @@
-// import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-// import { getServerSession } from "next-auth";
-// import getUserProfile from "@/libs/getUserProfile";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import getUser from "@/libs/getUser";
 
-export default function UserPage() {
-    // const session = await getServerSession(authOptions)
+export default async function UserPage() {
+    const session = await getServerSession(authOptions)
 
-    // if (!session || !session.user.token) return null
+    if (!session || !session.user.token) return null
 
-    // const userProfile = await getUserProfile(session.user.token)
-    // var createdAt = new Date(userProfile.data.createdAt)
+    const userProfile = await getUser(session.user.token)
+    var createdAt = new Date(userProfile.data.createdAt)
+    var monthYear = createdAt.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
 
     return (
         <div className="w-1/2 mt-24 bg-slate-100 m-5 p-5 rounded-lg flex flex-col justify-center">
-            <div className="text-xl text-center font-bold capitalize m-5">Alice Wonderland</div>
+            <div className="text-xl text-center font-bold capitalize m-5">{userProfile.data.name}</div>
             <table className="text-lg table-auto border-separate border-spacing-2 mt-5">
                 <tbody>
-                    <tr><td>Email</td><td className="text-right">alice@gmail.com</td></tr>
-                    <tr><td>Phone</td><td className="text-right">0812345678</td></tr>
-                    <tr><td>Member Since</td><td className="text-right">2024</td></tr>
+                    <tr><td>Email</td><td className="text-right">{userProfile.data.email}</td></tr>
+                    <tr><td>Phone</td><td className="text-right">{userProfile.data.tel}</td></tr>
+                    <tr><td>Member Since</td><td className="text-right">{monthYear}</td></tr>
                 </tbody>
             </table>
         </div>

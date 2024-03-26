@@ -1,24 +1,26 @@
-
 import { CarCard } from "@/components/CarCard";
 import CustomFilter from "@/components/CustomFilter";
 import Hero from "@/components/Hero";
+import CarLists from "@/components/Home";
 import SearchBar from "@/components/SearchBar";
 import { getCars } from "@/libs/getCars";
+import { CarItems } from "@/types";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 
 
-export default async function Home({searchParams}) {
-    
-    const allCars = await getCars({
-      manufacturer: searchParams.manufacturer || '',
-      year: searchParams.year || '',
-      limit: searchParams.limit || 10,
-      model: searchParams.model || ''
-    })
+export default  function Home() {
 
 
-  const isDataEmpty =   allCars.length < 1 || !allCars;
+
+    // const allCars = await getCars({
+    //   manufacturer: searchParams.manufacturer || '',
+    //   year: searchParams.year || '',
+    //   limit: searchParams.limit || 10,
+    //   model: searchParams.model || ''
+    // })
+    // console.log(allCars)
   
   return (
     <main className="overflow-hidden">
@@ -35,18 +37,7 @@ export default async function Home({searchParams}) {
               <CustomFilter title="year"/>
           </div>
         </div>
-        {!isDataEmpty ? (
-          <section>
-           <div className="home__cars-wrapper">
-              {allCars?.data.map((car:any) => (<CarCard car={car}/>))}
-           </div>
-          </section>
-        ) : (
-          <div className="home__error-container">
-            <h2 className="text-black text-xl font-bold ">Oops, no results</h2>
-            <p>{allCars?.message}</p>
-          </div>
-        )}
+        <CarLists/>
       </div>
     </main>
   );

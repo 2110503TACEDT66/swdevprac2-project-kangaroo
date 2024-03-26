@@ -1,21 +1,16 @@
 'use client'
 import CustomButton from "./CustomButton";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import getUser from "@/libs/getUser";
 
-export default async function Hero() {
-    
-
+export default function Hero() {
     const handleScroll = () => {
         const nextSection = document.getElementById("discover");
     
         if (nextSection) {
           nextSection.scrollIntoView({ behavior: "smooth" });
         }
-      };
+    };
+
     return(
         <div className="hero">
             <div className="flex-1 pt-36 padding-x">

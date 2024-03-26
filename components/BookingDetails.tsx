@@ -1,20 +1,42 @@
 "use client";
-
 import { CarProps } from "@/types";
+import { useState } from "react";
 import Image from "next/image";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { skip } from "node:test";
 import CustomButton from "./CustomButton";
 import PictureParser from "./pictureParser";
+import deleteBooking from "@/libs/deleteBooking";
+
 interface CarDetailsProps {
   isOpen: boolean;
   closeModal: () => void;
   car: CarProps;
+  bookingID: string;
+  token: string;
 }
 
-export function BookingDetails({ isOpen, closeModal, car }: CarDetailsProps) {
+export function BookingDetails({
+  isOpen,
+  closeModal,
+  car,
+  bookingID,
+  token,
+}: CarDetailsProps) {
   var count = 0;
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleDeleteConfirmation = async () => {
+    try {
+      await deleteBooking(bookingID, token);
+      closeModal();
+      setShowConfirmation(false);
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting booking:", error);
+    }
+  };
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -150,17 +172,53 @@ export function BookingDetails({ isOpen, closeModal, car }: CarDetailsProps) {
                     </div>
 
                     <div className="mt-6 flex flex-col w-full gap-3">
-                        <button className="bg-transparent hover:bg-emerald-500 text-emerald-700 font-semibold hover:text-white py-2 px-4 border border-emerald-500 hover:border-transparent rounded">
-                            Edit Booking
-                        </button>
+                      <button className="bg-transparent hover:bg-emerald-500 text-emerald-700 font-semibold hover:text-white py-2 px-4 border border-emerald-500 hover:border-transparent rounded">
+                        Edit Booking
+                      </button>
 
-                        <button className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
-                            Delete Booking
-                        </button>
+                      <button
+                        className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
+                        onClick={() => setShowConfirmation(true)}
+                      >
+                        Delete Booking
+                      </button>
                     </div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
+
+              <Transition show={showConfirmation} as={Fragment}>
+                <Dialog
+                  as="div"
+                  className="fixed inset-0 z-10 overflow-y-auto"
+                  onClose={() => setShowConfirmation(false)}
+                >
+                  <div className="flex items-center justify-center min-h-screen">
+                    <div className="bg-white rounded-lg p-6 shadow-xl">
+                      <Dialog.Title className="text-lg font-bold">
+                        Confirm Deletion
+                      </Dialog.Title>
+                      <Dialog.Description className="mt-2">
+                        Are you sure you want to delete this booking?
+                      </Dialog.Description>
+                      <div className="mt-4 flex justify-end">
+                        <button
+                          className="mr-2 px-4 py-2 bg-red-500 text-white rounded"
+                          onClick={() => setShowConfirmation(false)}
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          className="px-4 py-2 bg-emerald-500 text-white rounded"
+                          onClick={handleDeleteConfirmation}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Dialog>
+              </Transition>
             </div>
           </div>
         </Dialog>

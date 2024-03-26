@@ -1,8 +1,12 @@
 'use client'
 import CustomButton from "./CustomButton";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 export default function Hero() {
+    const { data:session } = useSession()
+    console.log(session)
+
     const handleScroll = () => {
         const nextSection = document.getElementById("discover");
     

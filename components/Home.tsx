@@ -1,6 +1,7 @@
 'use client'
 
 import { CarCard } from "@/components/CarCard";
+import { BookingCard } from "@/components/BookingCard";
 import CustomFilter from "@/components/CustomFilter";
 import Hero from "@/components/Hero";
 import SearchBar from "@/components/SearchBar";

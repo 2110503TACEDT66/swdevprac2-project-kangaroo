@@ -44,7 +44,7 @@ export interface Booking {
   _id: string;
   bookingDate: string;
   user: string;
-  car: string;
+  car: CarItems;
   createdAt: string;
 }
 

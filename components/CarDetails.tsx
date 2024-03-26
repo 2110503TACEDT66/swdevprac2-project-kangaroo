@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { CarProps } from "@/types";
@@ -9,20 +7,17 @@ import { Dialog, Transition } from "@headlessui/react";
 import { skip } from "node:test";
 import CustomButton from "./CustomButton";
 import { useRouter } from "next/navigation";
-
+import Link from "next/link";
 
 interface CarDetailsProps {
-    isOpen: boolean;
-    closeModal: () => void;
-    car: CarProps;
-  }
-  export function CarDetails({ isOpen, closeModal, car }: CarDetailsProps) {
-    const { Picture1, Picture2, Picture3, Picture4, _id } = car;
-    const router = useRouter()
+  isOpen: boolean;
+  closeModal: () => void;
+  car: CarProps;
+}
+export function CarDetails({ isOpen, closeModal, car }: CarDetailsProps) {
+  const { Picture1, Picture2, Picture3, Picture4, _id } = car;
+  const router = useRouter();
 
-    const handleClickBtn = (massageID: string) => {
-        router.push(`/booking/${massageID}`)
-    }
   function removeAmpFromPicture(url: string): string {
     if (!url) {
       return url;
@@ -54,26 +49,26 @@ interface CarDetailsProps {
                 leave="ease-in duration-200"
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
-                >
+              >
                 <Dialog.Panel
                   className="relative w-full max-w-lg max-h-[90vh] 
                     overflow-y-auto transfrom rounded-2xl bg-white p-6 text-left shadow-xl
                     trasition-all flex flex-col gap-5"
-                    >
-                      <button
-                        type="button"
-                        onClick={closeModal}
-                        className="absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 rounded-full"
-                      >
-                        <Image
-                          src="/close.svg"
-                          alt="close"
-                          width={20}
-                          height={20}
-                          className="object-contain"
-                        />
-                      </button>
-                      <div className="flex-1 flex flex-col gap-3">
+                >
+                  <button
+                    type="button"
+                    onClick={closeModal}
+                    className="absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 rounded-full"
+                  >
+                    <Image
+                      src="/close.svg"
+                      alt="close"
+                      width={20}
+                      height={20}
+                      className="object-contain"
+                    />
+                  </button>
+                  <div className="flex-1 flex flex-col gap-3">
                     <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
                       <Image
                         src={removeAmpFromPicture(Picture1)}
@@ -126,7 +121,7 @@ interface CarDetailsProps {
                                     </div>
                                 ))}
                             </div> */}
-                            <div className="mt-3 flex flex-wrap gap-4">
+                    <div className="mt-3 flex flex-wrap gap-4">
                       {Object.entries(car).map(([key, value]) => {
                         if (count < 10) {
                           count++;
@@ -159,14 +154,14 @@ interface CarDetailsProps {
                       })}
                     </div>
 
-                    <CustomButton
-                      title="Booking"
-                      containerStyles="w-full py-[16px] rounded-full bg-primary-blue mt-5"
-                      textStyles="text-white text-[14px] 
+                    <Link href={`booking/${_id}`}>
+                      <CustomButton
+                        title="Booking"
+                        containerStyles="w-full py-[16px] rounded-full bg-primary-blue mt-5"
+                        textStyles="text-white text-[14px] 
                     leading-[17px] font-bold"
-                       handleClick={()=>{handleClickBtn(_id)}}
-                    />
-                    
+                      />
+                    </Link>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -177,3 +172,4 @@ interface CarDetailsProps {
     </>
   );
 }
+//

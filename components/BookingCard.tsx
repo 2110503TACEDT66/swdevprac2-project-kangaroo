@@ -1,33 +1,63 @@
 'use client'
 
-import { CarProps } from "@/types";
-import { useState } from "react";
+import { Booking, CarProps } from "@/types";
+import { useState, useEffect } from "react";
 import CustomButton from "./CustomButton";
 import Image from "next/image";
 import { BookingDetails } from "./BookingDetails";
+import getCar from "@/libs/getCar";
+import PictureParser from "./pictureParser";
 
-export function BookingCard({car} : {car:CarProps}) {
-    const { Brand, Model, Year, Color, FeePerDay, LicensePlate} = car;
+export function BookingCard({booking} : {booking:Booking}) {
+    const { bookingDate, user } = booking
+    const [ bookedCar, setBookedCar ] = useState<CarProps|null>(null)
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+    
+    const fetchData = async () => {
+    try {
+        const bookedCar = await getCar(booking.car.id);
+        setBookedCar(bookedCar.data);
+    } catch (error) {
+        console.error('Failed to fetch cars:', error);
+    }
+    };
+
+    const { Brand, Model, Year, Color, FeePerDay, LicensePlate, PictureCover } = bookedCar || {};
+    const pictureSrc = PictureCover ? PictureParser(PictureCover) : '';
 
     const [isOpen, setIsOpen] = useState(false)
-    return(
+    
+    return bookedCar ? (
         <div className="car-card group">
-            <div className="car-card__content">
-                <h2 className="car-card__content-title">
-                        {Brand} {Model}
-                </h2>
+            <div className="car-card__content flex-col">
+                <div className="leading-3">
+                    {Brand} 
+                </div>
+                <div className="car-card__content-title">
+                    {Model}
+                </div>
             </div>
-            <p className="flex m-6 text-[32px] font-extrabold">
-                <span className="self-start text-[14px] font-semibold">  
-                    $
-                </span>
-                {FeePerDay}
-                <span className="self-end text-[14px] font-medium">
-                    /day
-                </span>
-            </p>
+            <div className="flex m-6 text-[24px] font-bold gap-10 justify-between">
+                <div className="flex flex-col">
+                    <div className="text-base text-zinc-500">From</div>
+                    {new Date(bookingDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}
+                </div>
+                <div className="flex flex-col">
+                    <div className="text-base text-zinc-500">Remaining Day</div>
+                    <p className="flex font-extrabold">6</p>
+                </div>
+            </div>
             <div className="relative w-full h-40 my-3 object-contain">
-                <Image src="/benz.png" alt="car model" fill priority className="object-contain"/>
+                <Image
+                    src={pictureSrc}
+                    alt="car model"
+                    fill
+                    priority
+                    className="object-contain"
+                />
             </div>
             <div className="relative flex w-full mt-2">
                 <div className="flex group-hover:invisible w-full justify-between text-gray">
@@ -57,11 +87,7 @@ export function BookingCard({car} : {car:CarProps}) {
                 </div>
             </div>
 
-            <BookingDetails isOpen={isOpen} closeModal={()=>{
-                setIsOpen(false) }} car={car}
-                />
-            
-            
+            <BookingDetails isOpen={isOpen} closeModal={()=>{setIsOpen(false) }} car={bookedCar}/>
         </div>
-    );
+    ): null;
 };

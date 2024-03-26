@@ -28,7 +28,7 @@ export function CarDetails({isOpen, closeModal, car}: CarDetailsProps) {
         else return url.replace("amp;", "");
         }
         
-
+        var count =0
 
 
     return(
@@ -96,18 +96,30 @@ export function CarDetails({isOpen, closeModal, car}: CarDetailsProps) {
                                 ))}
                             </div> */}
                 
-                            <div className="mt-3 flex flex-wrap gap-4">
-                                {Object.entries(car).map(([key, value]) => (
-                                    <div className="flex justify-between w-full gap-5 text-right" key={key}>
-                                    {['Brand', 'Model', 'Year', 'Color','FeePerDay'].includes(key) && (
-                                        <div className="flex justify-between w-full gap-5 text-right" key={key}>
-                                            <h4 className="text-gray capitalize">{key.split("_").join(" ")}</h4>
-                                            <p className="text-black-100 font-semibold">{value}</p>
-                                        </div>
-                                    )}
-                                </div>
-                                ))}
-                            </div>
+                <div className="mt-3 flex flex-wrap gap-4">
+    {Object.entries(car).map(([key, value]) => {
+        if (count < 5) {
+            count++;
+            return (
+                ['Brand', 'Model', 'Year', 'Color', 'FeePerDay'].includes(key) && (
+                    <div className="flex justify-between w-full gap-5 text-right" key={key}>
+                        <div className="flex justify-between w-full gap-5 text-right">
+                            <h4 className="text-gray capitalize">{key.split("_").join(" ")}</h4>
+                            <p className="text-black-100 font-semibold">{value}</p>
+                        </div>
+                    </div>
+                )
+            );
+        } else {
+            return null; // Return null or any other fallback JSX when the limit is reached
+        }
+    })}
+</div>
+
+                            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Booking
+                </button>
+                
 
                                  </div>
                             </Dialog.Panel>

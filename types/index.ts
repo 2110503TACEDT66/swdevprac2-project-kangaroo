@@ -22,6 +22,11 @@ export interface CarProps {
   Color: string;
   FeePerDay: string;
   LicensePlate: string;
+  PictureCover: string;
+  Picture1: string;
+  Picture2: string;
+  Picture3: string;
+  Picture4: string;
 }
 
 export interface filterProps {
@@ -58,4 +63,12 @@ export interface GetCars {
   pagination: {};
   data: CarItems[];
   id: string;
+}
+
+export interface imgProps{
+    image1removebg: string,
+    image1: string,
+    image2: string,
+    image3: string,
+    image4: string
 }

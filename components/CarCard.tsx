@@ -1,6 +1,6 @@
 'use client'
 
-import { CarProps } from "@/types";
+import { CarProps, imgProps } from "@/types";
 import { useState } from "react";
 import CustomButton from "./CustomButton";
 import Image from "next/image";
@@ -10,9 +10,23 @@ import InvertColorsIcon from '@mui/icons-material/InvertColors';
 import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 
 export function CarCard({car} : {car:CarProps}) {
-    const { Brand, Model, Year, Color, FeePerDay, LicensePlate} = car;
+    const { Brand, Model, Year, Color, FeePerDay, LicensePlate, PictureCover } = car
+
+    // const newPictureCover = PictureCover ? PictureCover.replace("amp;", "") : '';
+
+    function removeAmpFromPicture(url: string): string {
+        if (!url) {
+            return url; 
+        }
+        else return url.replace("amp;", "");
+    }
+
+
 
     const [isOpen, setIsOpen] = useState(false)
+
+    
+
     return(
         <div className="car-card group">
             <div className="car-card__content">
@@ -22,7 +36,7 @@ export function CarCard({car} : {car:CarProps}) {
             </div>
             <p className="flex m-6 text-[32px] font-extrabold">
                 <span className="self-start text-[14px] font-semibold">  
-                    $
+                    ฿
                 </span>
                 {FeePerDay}
                 <span className="self-end text-[14px] font-medium">
@@ -30,7 +44,7 @@ export function CarCard({car} : {car:CarProps}) {
                 </span>
             </p>
             <div className="relative w-full h-40 my-3 object-contain">
-                <Image src="/benz.png" alt="car model" fill priority className="object-contain"/>
+                <Image src={removeAmpFromPicture(PictureCover)} alt="car model" fill priority className="object-contain "/>
             </div>
             <div className="relative flex w-full mt-2">
                 <div className="flex group-hover:invisible w-full justify-between text-gray">

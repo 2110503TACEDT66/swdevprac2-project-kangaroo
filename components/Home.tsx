@@ -5,14 +5,14 @@ import CustomFilter from "@/components/CustomFilter";
 import Hero from "@/components/Hero";
 import SearchBar from "@/components/SearchBar";
 import { getCars } from "@/libs/getCars";
-import { CarItems } from "@/types";
+import { CarItems, imgProps } from "@/types";
 import { useEffect, useState } from "react";
 
 
     export default  function CarLists() {
     
         const [cars, setCars] = useState<CarItems[]|null>(null);
-      
+
           useEffect(() => {
             fetchData();
           }, []);
@@ -25,6 +25,7 @@ import { useEffect, useState } from "react";
               console.error('Failed to fetch cars:', error);
             }
           };
+
       
       
           // const allCars = await getCars({
@@ -42,7 +43,7 @@ import { useEffect, useState } from "react";
               {!isDataEmpty ? (
                 <section>
                  <div className="home__cars-wrapper">
-                    {cars?.map((car:any) => (<CarCard car={car}/>))}
+                    {cars?.map((car:any) => (<CarCard car={car} />))}
                  </div>
                 </section>
               ) : (

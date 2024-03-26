@@ -12,7 +12,25 @@ interface CarDetailsProps{
     car: CarProps
 }
 
-export function CarDetails({isOpen, closeModal, car} : CarDetailsProps) {
+export function CarDetails({isOpen, closeModal, car}: CarDetailsProps) {
+    const {Picture1, Picture2, Picture3, Picture4 } = car;
+    
+    // const newPicture1 = Picture1 ? Picture1.replace("amp;", "") : '';
+    // const newPicture2 = Picture2 ? Picture2.replace("amp;", "") : '';
+    // const newPicture3 = Picture3 ? Picture3.replace("amp;", "") : '';
+    // const newPicture4 = Picture4 ? Picture4.replace("amp;", "") : '';
+
+    function removeAmpFromPicture(url: string): string {
+        if (!url) {
+            return url; 
+        }
+
+        else return url.replace("amp;", "");
+        }
+        
+
+
+
     return(
         <>
         <Transition appear show={isOpen} as={Fragment}>
@@ -52,17 +70,17 @@ export function CarDetails({isOpen, closeModal, car} : CarDetailsProps) {
 
                         <div className="flex-1 flex flex-col gap-3">
                             <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
-                            <Image src="/benz.png" alt="car model" fill priority className="object-contain"/>
+                            <Image src={removeAmpFromPicture(Picture1)} alt="car model" fill priority className="object-contain"/>
                             </div>
                             <div className="flex gap-3">
                                 <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                <Image src="/benz.png" alt="car model" fill priority className="object-contain"/>
+                                <Image src={removeAmpFromPicture(Picture2)} alt="car model" fill priority className="object-contain"/>
                                 </div>
                                 <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                <Image src="/benz.png" alt="car model" fill priority className="object-contain"/>
+                                <Image src={removeAmpFromPicture(Picture3)} alt="car model" fill priority className="object-contain"/>
                                 </div>
                                 <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                <Image src="/benz.png" alt="car model" fill priority className="object-contain"/>
+                                <Image src={removeAmpFromPicture(Picture4)} alt="car model" fill priority className="object-contain"/>
                                 </div>
                             </div>
                         </div>

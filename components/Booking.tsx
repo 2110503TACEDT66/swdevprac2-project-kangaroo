@@ -33,7 +33,7 @@ export default function BookingLists(props: { token: string }) {
           </section>
         ) : (
           <div className="home__error-container">
-            <h2 className="text-black text-xl font-bold ">Oops, no results</h2>
+            <h2 className="text-black text-xl font-bold animate-bounce">Loading</h2>
             {/* <p>{cars?.message}</p> */}
           </div>
         )}

@@ -1,15 +1,12 @@
 import BookingLists from "@/components/Booking";
-import { CarCard } from "@/components/CarCard";
-import CustomFilter from "@/components/CustomFilter";
-import Hero from "@/components/Hero";
-import CarLists from "@/components/Home";
-import SearchBar from "@/components/SearchBar";
-import { getCars } from "@/libs/getCars";
-import { CarItems } from "@/types";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
-export  default function bookings(){
+export default async function bookings(){
+  const session = await getServerSession(authOptions)
+  if (!session || !session.user.token) return null
+
+  const token = session.user.token
 
   return (
     <main className="overflow-hidden">
@@ -19,9 +16,7 @@ export  default function bookings(){
           <h1 className="text-4xl font-extrabold ">Your Booking</h1>
         </div>
 
-
-        <BookingLists/>
-
+        <BookingLists token={token}/>
       </div>
     </main>
   );

@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { Link as MuiLink } from "@mui/material";
 import CustomButton from "./CustomButton";
 import { IconButton } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -29,11 +28,14 @@ export default async function Navbar() {
 
                     {
                         session ?
-                        <CustomButton destination="/api/auth/signout" title="Sign Out" btnType="button" containerStyles="text-base text-primary-blue rounded-full bg-white min-w-[130px] animate-fade-down animate-delay-1000"/>
+                        <Link href="/api/auth/signout">
+                            <CustomButton title="Sign Out" btnType="button" containerStyles="text-base text-primary-blue rounded-full bg-white min-w-[130px] animate-fade-down animate-delay-1000"/>
+                        </Link>
                         : 
-                        <CustomButton destination="/api/auth/signin" title="Sign In" btnType="button" containerStyles="text-base text-primary-blue rounded-full bg-white min-w-[130px] animate-fade-down animate-delay-1000"/>
+                        <Link href="/api/auth/signin">
+                            <CustomButton title="Sign In" btnType="button" containerStyles="text-base text-primary-blue rounded-full bg-white min-w-[130px] animate-fade-down animate-delay-1000"/>
+                        </Link> 
                     }
-                    
                 </div>
             </nav>
         </header>

@@ -16,15 +16,11 @@ export  default function bookings(){
 
       <div className="mt-24 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
-          <h1 className="text-4xl font-extrabold ">Car Booking</h1>
-          <p>Please select the car you would like to book</p>
+          <h1 className="text-4xl font-extrabold ">Your Booking</h1>
         </div>
 
 
         <BookingLists/>
-
-
-        
 
       </div>
     </main>

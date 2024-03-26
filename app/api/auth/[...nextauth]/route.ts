@@ -21,6 +21,7 @@ export const authOptions:AuthOptions = {
             if (!credentials) return null
 
             const user = await userLogIn(credentials.email, credentials.password)
+            // console.log(user)
       
             if (user) {
               // Any object returned will be saved in `user` property of the JWT
@@ -34,7 +35,16 @@ export const authOptions:AuthOptions = {
           }
         })
     ],
-    session: { strategy: "jwt" }
+    session: { strategy: "jwt" },
+    callbacks: {
+        async jwt({token, user}) {
+            return {...token, ...user}
+        },
+        async session({session, token, user}) {
+            session.user = token as any
+            return session
+        }
+    }
 }
 
 const handler = NextAuth(authOptions)

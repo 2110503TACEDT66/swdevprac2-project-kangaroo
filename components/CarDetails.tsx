@@ -69,18 +69,19 @@ export function CarDetails({isOpen, closeModal, car}: CarDetailsProps) {
                         </button>
 
                         <div className="flex-1 flex flex-col gap-3">
-                            <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
-                            <Image src={removeAmpFromPicture(Picture1)} alt="car model" fill priority className="object-contain"/>
+                            <div className="relative w-full h-40 bg-primary-blue-100 rounded-lg">
+                                <Image src={removeAmpFromPicture(Picture1)} alt="car model" fill priority className="object-contain rounded-lg"/>
                             </div>
+
                             <div className="flex gap-3">
                                 <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                <Image src={removeAmpFromPicture(Picture2)} alt="car model" fill priority className="object-contain"/>
+                                    <Image src={removeAmpFromPicture(Picture2)} alt="car model" fill priority className="object-cover rounded-lg"/>
                                 </div>
                                 <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                <Image src={removeAmpFromPicture(Picture3)} alt="car model" fill priority className="object-contain"/>
+                                    <Image src={removeAmpFromPicture(Picture3)} alt="car model" fill priority className="object-cover rounded-lg"/>
                                 </div>
                                 <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                                <Image src={removeAmpFromPicture(Picture4)} alt="car model" fill priority className="object-contain"/>
+                                    <Image src={removeAmpFromPicture(Picture4)} alt="car model" fill priority className="object-cover rounded-lg"/>
                                 </div>
                             </div>
                         </div>

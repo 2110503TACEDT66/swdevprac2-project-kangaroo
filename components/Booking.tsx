@@ -1,5 +1,4 @@
 'use client'
-import { getCars } from "@/libs/getCars";
 import { Booking, CarItems } from "@/types";
 import { useEffect, useState } from "react";
 import {BookingCard} from "@/components/BookingCard"
@@ -28,13 +27,12 @@ export default function BookingLists(props: { token: string }) {
         {!isDataEmpty ? (
           <section>
             <div className="home__cars-wrapper">
-              {bookings?.map((booking:any) => (<BookingCard booking={booking}/>))}
+              {bookings?.map((booking:any) => (<BookingCard booking={booking} token={props.token}/>))}
             </div>
           </section>
         ) : (
           <div className="home__error-container">
             <h2 className="text-black text-xl font-bold animate-bounce">Loading</h2>
-            {/* <p>{cars?.message}</p> */}
           </div>
         )}
       </>

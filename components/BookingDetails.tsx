@@ -14,6 +14,7 @@ interface CarDetailsProps {
   car: CarProps;
   bookingID: string;
   token: string;
+  bookingDateFrom: string;
 }
 
 export function BookingDetails({
@@ -21,6 +22,7 @@ export function BookingDetails({
   closeModal,
   car,
   bookingID,
+  bookingDateFrom,
   token,
 }: CarDetailsProps) {
   var count = 0;
@@ -127,6 +129,9 @@ export function BookingDetails({
                       {" "}
                       {car.Brand} {car.Model}{" "}
                     </h2>
+                    <div className="mt-6 flex text-xl justify-center">
+                      {new Date(bookingDateFrom).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    </div>
                     <div className="mt-3 flex flex-wrap gap-4">
                       <div className="mt-3 flex flex-wrap gap-4">
                         {Object.entries(car).map(([key, value]) => {

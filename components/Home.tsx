@@ -10,7 +10,7 @@ import { CarItems, imgProps } from "@/types";
 import { useEffect, useState } from "react";
 
 
-    export default  function CarLists() {
+    export default function CarLists() {
     
         const [cars, setCars] = useState<CarItems[]|null>(null);
 

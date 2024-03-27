@@ -40,7 +40,7 @@ export function BookingCard({booking, token} : {booking:Booking, token: string})
                     {Model}
                 </div>
             </div>
-            <div className="flex m-6 text-[24px] font-bold gap-10 justify-between">
+            <div className="w-full flex mt-6 text-[24px] font-bold justify-around">
                 <div className="flex flex-col">
                     <div className="text-base text-zinc-500">From</div>
                     {new Date(bookingDateFrom).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -87,7 +87,7 @@ export function BookingCard({booking, token} : {booking:Booking, token: string})
                 </div>
             </div>
 
-            <BookingDetails isOpen={isOpen} closeModal={()=>{setIsOpen(false) }} car={bookedCar} bookingID={booking._id} bookingDateFrom={bookingDateFrom} token={token}/>
+            <BookingDetails isOpen={isOpen} closeModal={()=>{setIsOpen(false) }} car={bookedCar} booking={booking} token={token}/>
         </div>
     ): null;
 };

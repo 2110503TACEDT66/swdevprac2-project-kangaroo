@@ -4,7 +4,6 @@ import getUser from "@/libs/getUser";
 
 export default async function UserPage() {
     const session = await getServerSession(authOptions)
-
     if (!session || !session.user.token) return null
 
     const userProfile = await getUser(session.user.token)

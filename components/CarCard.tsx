@@ -8,7 +8,7 @@ import { CarDetails } from "./CarDetails";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import InvertColorsIcon from "@mui/icons-material/InvertColors";
 import AspectRatioIcon from "@mui/icons-material/AspectRatio";
-import PictureParser from "./pictureParser";
+import PictureParser from "./PictureParser";
 
 export function CarCard({ car }: { car: CarProps }) {
   const { Brand, Model, Year, Color, FeePerDay, LicensePlate, PictureCover } = car;

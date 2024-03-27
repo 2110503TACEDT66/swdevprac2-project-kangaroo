@@ -11,6 +11,7 @@ import deleteBooking from "@/libs/deleteBooking";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Link from "next/link";
 
 interface CarDetailsProps {
   isOpen: boolean;
@@ -257,9 +258,11 @@ export function BookingDetails({
                     </div>
 
                     <div className="mt-6 flex flex-col w-full gap-3">
-                      <button className="bg-transparent hover:bg-emerald-500 text-emerald-700 font-semibold hover:text-white py-2 px-4 border border-emerald-500 hover:border-transparent rounded">
-                        Edit Booking
-                      </button>
+                      <Link href={`/booking/extend/${_id}`}>
+                        <button className="bg-transparent hover:bg-emerald-500 text-emerald-700 font-semibold hover:text-white py-2 px-4 border border-emerald-500 hover:border-transparent rounded">
+                          Edit Booking
+                        </button>
+                      </Link>
 
                       <button
                         className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"

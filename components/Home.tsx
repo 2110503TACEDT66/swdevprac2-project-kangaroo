@@ -49,7 +49,7 @@ import { useEffect, useState } from "react";
                 </section>
               ) : (
                 <div className="home__error-container">
-                  <h2 className="text-black text-xl font-bold ">Oops, no results</h2>
+                  <h2 className="text-black text-xl font-bold animate-wiggle animate-infinite">Oops, no results</h2>
                   {/* <p>{cars?.message}</p> */}
                 </div>
               )}

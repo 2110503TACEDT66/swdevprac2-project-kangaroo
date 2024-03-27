@@ -80,10 +80,6 @@
 .home__cars-wrapper {
   @apply grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full gap-8 pt-14;
 }
-
-.home__error-container {
-  @apply mt-16 flex justify-center items-center flex-col gap-2;
-}
 /* END: Home styles */
 
 /* START: Car Card styles */
@@ -217,3 +213,9 @@
   @apply cursor-default select-none py-2 pl-10 pr-4;
 }
 /* END: search manufacturer styles */
+
+/* START: Booking Details styles */
+.booking-details__container {
+  @apply w-full h-[300px] bg-white bg-cover bg-center rounded-lg;
+}
+/* END: Booking Details styles */

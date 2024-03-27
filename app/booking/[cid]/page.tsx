@@ -14,7 +14,8 @@ import { Dayjs } from "dayjs";
 
 function CardDetailPage({ params }: { params: { cid: string } }) {
   const [carDetail, setCarDetail] = useState<any>(null);
-  const [selectedDate, setSelectedDate] = useState<Dayjs|null>(null);
+const [selectedDateFrom, setSelectedDateFrom] = useState<Dayjs | null>(null);
+const [selectedDateTo, setSelectedDateTo] = useState<Dayjs | null>(null);
   const [token, setToken] = useState('');
 
   useEffect(() => {
@@ -33,7 +34,7 @@ function CardDetailPage({ params }: { params: { cid: string } }) {
 
   const handleConfirmBooking = () => {
     // if (!selectedDate || !carDetail || !token) return;
-    createBooking(selectedDate, carDetail, token);
+    createBooking(selectedDateFrom,selectedDateTo, carDetail, token);
   };
 
   if (!carDetail) {
@@ -52,14 +53,14 @@ function CardDetailPage({ params }: { params: { cid: string } }) {
         <div className="flex flex-col">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
-              <DatePicker label="DateFrom" value={selectedDate} onChange={date => setSelectedDate(date)}/>
+              <DatePicker label="DateFrom" value={selectedDateFrom} onChange={date => setSelectedDateFrom(date)}/>
             </DemoContainer>
           </LocalizationProvider>
 
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={["DatePicker"]}>
-              <DatePicker label="DateTo" value={selectedDate} onChange={date => setSelectedDate(date)}/>
+              <DatePicker label="DateTo" value={selectedDateTo} onChange={date => setSelectedDateTo(date)}/>
             </DemoContainer>
           </LocalizationProvider>
           

@@ -8,7 +8,12 @@ import { Dialog, Transition } from "@headlessui/react";
 import { skip } from "node:test";
 import CustomButton from "./CustomButton";
 import { useRouter } from "next/navigation";
+import { BookingDetails } from "./BookingDetails";
+import PictureParser from "./PictureParser";
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 interface CarDetailsProps {
     isOpen: boolean;
@@ -18,6 +23,63 @@ interface CarDetailsProps {
   export function CarDetails({ isOpen, closeModal, car }: CarDetailsProps) {
     const { Picture1, Picture2, Picture3, Picture4, _id } = car;
     const router = useRouter()
+
+
+
+    function NextArrow(props: any) {
+        const { className, style, onClick } = props;
+        return (
+          <div
+            className={className}
+            style={{
+              ...style,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "22px",
+              height: "22px",
+              borderRadius: "50%",
+              background: "#444",
+              transform: "translate(-2rem, -1rem)",
+              zIndex: "10",
+            }}
+            onClick={onClick}
+          />
+        );
+      }
+    
+      function PrevArrow(props: any) {
+        const { className, style, onClick } = props;
+        return (
+          <div
+            className={className}
+            style={{
+              ...style,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "22px",
+              height: "22px",
+              borderRadius: "50%",
+              background: "#444",
+              transform: "translate(2rem, -1rem)",
+              zIndex: "10",
+            }}
+            onClick={onClick}
+          />
+        );
+      }
+    
+      const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        prevArrow: <PrevArrow />,
+        nextArrow: <NextArrow />,
+      };
+
 
     const handleClickBtn = (massageID: string) => {
         router.push(`/booking/${massageID}`)
@@ -73,44 +135,59 @@ interface CarDetailsProps {
                         />
                       </button>
                       <div className="flex-1 flex flex-col gap-3">
-                    <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
-                      <Image
-                        src={removeAmpFromPicture(Picture1)}
-                        alt="car model"
-                        fill
-                        priority
-                        className="object-contain"
-                      />
-                    </div>
-                    <div className="flex gap-3">
-                      <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                        <Image
-                          src={removeAmpFromPicture(Picture2)}
-                          alt="car model"
-                          fill
-                          priority
-                          className="object-contain"
-                        />
+                    
+
+                      <Slider {...settings}>
+                      <div className="booking-details__container">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={PictureParser(car.Picture1)}
+                            alt="Car Image 1"
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg"
+                          />
+                        </div>
                       </div>
-                      <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                        <Image
-                          src={removeAmpFromPicture(Picture3)}
-                          alt="car model"
-                          fill
-                          priority
-                          className="object-contain"
-                        />
+                      <div className="booking-details__container">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={PictureParser(car.Picture2)}
+                            alt="Car Image 2"
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg"
+                          />
+                        </div>
                       </div>
-                      <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                        <Image
-                          src={removeAmpFromPicture(Picture4)}
-                          alt="car model"
-                          fill
-                          priority
-                          className="object-contain"
-                        />
+                      <div className="booking-details__container">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={PictureParser(car.Picture3)}
+                            alt="Car Image 3"
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg"
+                          />
+                        </div>
                       </div>
-                    </div>
+                      <div className="booking-details__container">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={PictureParser(car.Picture4)}
+                            alt="Car Image 4"
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg"
+                          />
+                        </div>
+                      </div>
+                    </Slider>
+
+
+
+                    
+
                   </div>
                   <div className="flex-1 flex-col flex gap-2">
                     <h2 className="font-semibold text-xl capitalize">
@@ -157,6 +234,7 @@ interface CarDetailsProps {
                         }
                       })}
                     </div>
+
 
                     <CustomButton
                       title="Booking"

@@ -9,6 +9,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import InvertColorsIcon from "@mui/icons-material/InvertColors";
 import AspectRatioIcon from "@mui/icons-material/AspectRatio";
 import PictureParser from "./PictureParser";
+import { BookingDetails } from "./BookingDetails";
 
 export function CarCard({ car }: { car: CarProps }) {
   const { Brand, Model, Year, Color, FeePerDay, LicensePlate, PictureCover } = car;
@@ -71,6 +72,7 @@ export function CarCard({ car }: { car: CarProps }) {
         }}
         car={car}
       />
+        {/* <BookingDetails isOpen={isOpen} closeModal={()=>{isOpen}} car={car} booking={'booking'} token={'token'}/> */}
     </div>
   );
 }

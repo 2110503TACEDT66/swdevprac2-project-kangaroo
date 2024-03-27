@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import CustomButton from "./CustomButton";
-import PictureParser from "./pictureParser";
+import PictureParser from "./PictureParser";
 import deleteBooking from "@/libs/deleteBooking";
 
 import Slider from "react-slick";

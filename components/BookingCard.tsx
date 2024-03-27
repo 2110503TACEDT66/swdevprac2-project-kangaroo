@@ -6,7 +6,7 @@ import CustomButton from "./CustomButton";
 import Image from "next/image";
 import { BookingDetails } from "./BookingDetails";
 import getCar from "@/libs/getCar";
-import PictureParser from "./pictureParser";
+import PictureParser from "./PictureParser";
 
 export function BookingCard({booking, token} : {booking:Booking, token: string}) {
     const { bookingDateFrom, bookingDateTo } = booking

@@ -20,14 +20,14 @@ export default async function Navbar() {
                 <div className="flex gap-5">
                     {
                         session ?
-                        <IconButton href="/booking" className="animate-fade-down animate-delay-500">
+                        <IconButton href="/booking" className="animate-fade-down animate-delay-500" style={{ color: "#6667AB" }}>
                             <DirectionsCarIcon sx={{ fontSize: 30 }}/>
                         </IconButton>
                         : null
                     }
                     {
                         session ? 
-                        <IconButton href="/user" className="animate-fade-down animate-delay-500">
+                        <IconButton href="/user" className="animate-fade-down animate-delay-500" style={{ color: "#6667AB" }}>
                             <AccountCircleIcon sx={{ fontSize: 30 }}/>
                         </IconButton>
                         : null

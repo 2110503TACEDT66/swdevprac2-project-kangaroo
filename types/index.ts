@@ -42,7 +42,8 @@ export interface filterProps {
 
 export interface Booking {
   _id: string;
-  bookingDate: string;
+  bookingDateFrom: string;
+  bookingDateTo: string;
   user: string;
   car: CarItems;
   createdAt: string;

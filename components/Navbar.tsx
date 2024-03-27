@@ -36,7 +36,7 @@ export default async function Navbar() {
                         session ? null 
                         : 
                         <Link href="/api/auth/signin">
-                            <button className="xl:text-primary-blue-100 text-primary-blue">Log In</button>
+                            <button className="transition duration-300 xl:text-primary-blue-100 xl:hover:text-zinc-200 text-primary-blue">Log In</button>
                         </Link> 
                     }
                     {
@@ -46,7 +46,7 @@ export default async function Navbar() {
                         </Link>
                         : 
                         <Link href="/signup">
-                            <CustomButton title="Sign Up" btnType="button" containerStyles="xl:text-primary-blue text-white rounded-full xl:bg-white bg-primary-blue min-w-[130px] animate-fade-down animate-delay-1000"/>
+                            <CustomButton title="Sign Up" btnType="button" containerStyles="transition duration-300 xl:text-primary-blue text-white rounded-full xl:bg-white xl:hover:bg-zinc-100 xl:hover:border-zinc-100 bg-primary-blue min-w-[130px] animate-fade-down animate-delay-1000"/>
                         </Link> 
                     }
                 </div>

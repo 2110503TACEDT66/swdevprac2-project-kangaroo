@@ -1,5 +1,5 @@
 "use client";
-import { CarProps } from "@/types";
+import { Booking, CarProps } from "@/types";
 import { useState } from "react";
 import Image from "next/image";
 import { Fragment } from "react";
@@ -8,35 +8,92 @@ import CustomButton from "./CustomButton";
 import PictureParser from "./pictureParser";
 import deleteBooking from "@/libs/deleteBooking";
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 interface CarDetailsProps {
   isOpen: boolean;
   closeModal: () => void;
   car: CarProps;
-  bookingID: string;
+  booking: Booking;
   token: string;
-  bookingDateFrom: string;
 }
 
 export function BookingDetails({
   isOpen,
   closeModal,
   car,
-  bookingID,
-  bookingDateFrom,
+  booking,
   token,
 }: CarDetailsProps) {
   var count = 0;
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const { _id, bookingDateFrom, bookingDateTo} = booking
 
   const handleDeleteConfirmation = async () => {
     try {
-      await deleteBooking(bookingID, token);
+      await deleteBooking(_id, token);
       closeModal();
       setShowConfirmation(false);
       window.location.reload();
     } catch (error) {
       console.error("Error deleting booking:", error);
     }
+  };
+
+  function NextArrow(props: any) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "22px",
+          height: "22px",
+          borderRadius: "50%",
+          background: "#444",
+          transform: "translate(-2rem, -1rem)",
+          zIndex: "10",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function PrevArrow(props: any) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "22px",
+          height: "22px",
+          borderRadius: "50%",
+          background: "#444",
+          transform: "translate(2rem, -1rem)",
+          zIndex: "10",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
   };
 
   return (
@@ -85,52 +142,75 @@ export function BookingDetails({
                   </button>
 
                   <div className="flex-1 flex flex-col gap-3">
-                    <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
-                      <Image
-                        src={PictureParser(car.Picture1)}
-                        alt="car model"
-                        fill
-                        priority
-                        className="object-contain"
-                      />
-                    </div>
-                    <div className="flex gap-3">
-                      <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                        <Image
-                          src={PictureParser(car.Picture2)}
-                          alt="car model"
-                          fill
-                          priority
-                          className="object-contain"
-                        />
+                    <Slider {...settings}>
+                      <div className="booking-details__container">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={PictureParser(car.Picture1)}
+                            alt="Car Image 1"
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg"
+                          />
+                        </div>
                       </div>
-                      <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                        <Image
-                          src={PictureParser(car.Picture3)}
-                          alt="car model"
-                          fill
-                          priority
-                          className="object-contain"
-                        />
+                      <div className="booking-details__container">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={PictureParser(car.Picture2)}
+                            alt="Car Image 2"
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg"
+                          />
+                        </div>
                       </div>
-                      <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
-                        <Image
-                          src={PictureParser(car.Picture4)}
-                          alt="car model"
-                          fill
-                          priority
-                          className="object-contain"
-                        />
+                      <div className="booking-details__container">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={PictureParser(car.Picture3)}
+                            alt="Car Image 3"
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg"
+                          />
+                        </div>
                       </div>
-                    </div>
+                      <div className="booking-details__container">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={PictureParser(car.Picture4)}
+                            alt="Car Image 4"
+                            layout="fill"
+                            objectFit="contain"
+                            className="rounded-lg"
+                          />
+                        </div>
+                      </div>
+                    </Slider>
                   </div>
-                  <div className="flex-1 flex-col flex gap-2">
+                  <div className="mt-6 flex-1 flex-col flex gap-2">
                     <h2 className="font-semibold text-xl capitalize">
                       {" "}
                       {car.Brand} {car.Model}{" "}
                     </h2>
-                    <div className="mt-6 flex text-xl justify-center">
-                      {new Date(bookingDateFrom).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    <div className="flex mt-6 text-[24px] font-bold justify-around">
+                      <div className="flex flex-col">
+                        <div className="text-base text-zinc-500">From</div>
+                        {new Date(bookingDateFrom).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </div>
+                      <div className="flex flex-col">
+                        <div className="text-base text-zinc-500">To</div>
+                        {new Date(bookingDateTo).toLocaleDateString("en-US", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </div>
                     </div>
                     <div className="mt-3 flex flex-wrap gap-4">
                       <div className="mt-3 flex flex-wrap gap-4">

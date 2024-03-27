@@ -37,7 +37,7 @@ export default function Hero(props: { loggedIn: boolean; username?: string }) {
             </p>
             <CustomButton
               title="Explore Cars"
-              containerStyles="bg-primary-blue text-white rounded-full mt-10 animate-fade-up animate-delay-1000"
+              containerStyles="transition duration-300 bg-primary-blue text-white rounded-full mt-10 animate-fade-up animate-delay-1000 hover:bg-[#515294]"
               handleClick={handleScroll}
             />
           </div>

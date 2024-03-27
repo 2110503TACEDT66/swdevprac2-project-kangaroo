@@ -34,12 +34,18 @@ export default function BookingLists(props: { token: string }) {
         </section>
       ) : (
         <div className="mt-16 flex justify-center items-center flex-row">
-          <div
-            className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent text-primary-blue"
-            role="loading"
-          >
-            <span className="hidden">Loading...</span>
-          </div>
+          {!bookings || bookings.length == 0 ? (
+            <div className="text-black text-xl font-bold animate-wiggle animate-infinite">
+              Oops, no results
+            </div>
+          ) : (
+            <div
+              className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent text-primary-blue"
+              role="loading"
+            >
+              <span className="hidden">Loading...</span>
+            </div>
+          )}
         </div>
       )}
     </>

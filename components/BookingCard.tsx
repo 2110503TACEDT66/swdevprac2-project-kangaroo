@@ -9,7 +9,7 @@ import getCar from "@/libs/getCar";
 import PictureParser from "./pictureParser";
 
 export function BookingCard({booking, token} : {booking:Booking, token: string}) {
-    const { bookingDate } = booking
+    const { bookingDateFrom, bookingDateTo } = booking
     const [ bookedCar, setBookedCar ] = useState<CarProps|null>(null)
 
     useEffect(() => {
@@ -43,11 +43,11 @@ export function BookingCard({booking, token} : {booking:Booking, token: string})
             <div className="flex m-6 text-[24px] font-bold gap-10 justify-between">
                 <div className="flex flex-col">
                     <div className="text-base text-zinc-500">From</div>
-                    {new Date(bookingDate).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    {new Date(bookingDateFrom).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}
                 </div>
                 <div className="flex flex-col">
-                    <div className="text-base text-zinc-500">Remaining Day</div>
-                    <p className="flex font-extrabold">6</p>
+                <div className="text-base text-zinc-500">To</div>
+                    {new Date(bookingDateTo).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}
                 </div>
             </div>
             <div className="relative w-full h-40 my-3 object-contain">
@@ -81,13 +81,13 @@ export function BookingCard({booking, token} : {booking:Booking, token: string})
                     </div>
                 </div>
                 <div className="car-card__btn-container">
-                    <CustomButton title="Booking" 
+                    <CustomButton title="View Booking" 
                     containerStyles="w-full py-[16px] rounded-full bg-primary-blue" textStyles="text-white text-[14px] 
                     leading-[17px] font-bold" rightIcon="/right-arrow.svg" handleClick={()=>{setIsOpen(true)}}/>
                 </div>
             </div>
 
-            <BookingDetails isOpen={isOpen} closeModal={()=>{setIsOpen(false) }} car={bookedCar} bookingID={booking._id} token={token}/>
+            <BookingDetails isOpen={isOpen} closeModal={()=>{setIsOpen(false) }} car={bookedCar} bookingID={booking._id} bookingDateFrom={bookingDateFrom} token={token}/>
         </div>
     ): null;
 };

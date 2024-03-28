@@ -2,7 +2,7 @@ import { GetCars, filterProps } from "@/types"
 
 export async function getCars() :Promise<GetCars>{
     // const { manufacturer, year, model, color, limit} = filters
-    const response = await fetch("http://localhost:5050/api/v1/cars")
+    const response = await fetch(`${process.env.BACKEND_URL}/api/v1/cars`)
      //console.log( "hi",await response.json())
     if(!response.ok){
         throw new Error("Failed to fetch cars")

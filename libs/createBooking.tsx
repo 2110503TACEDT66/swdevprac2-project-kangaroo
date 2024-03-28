@@ -2,7 +2,7 @@ import bookings from "@/app/booking/page"
 import { Dayjs } from "dayjs"
 
 export default async function createBooking(booking_date_From: Dayjs|null,booking_date_To: Dayjs|null, userId: string, carId: string) {
-    const response = await fetch(`http://localhost:5050/api/v1/cars/${carId}/bookings`, {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/v1/cars/${carId}/bookings`, {
         method: "POST",
         headers: {
             "Content-type": "application/json",

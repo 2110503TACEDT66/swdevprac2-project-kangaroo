@@ -1,7 +1,7 @@
 import DateAdder from "@/utils/DateAdder"
 
 export default async function updateBooking(bookingID: string, date: string, token: string) {
-    const response = await fetch(`http://localhost:5050/api/v1/bookings/${bookingID}`, {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/v1/bookings/${bookingID}`, {
         method: "PUT",
         headers: {
             "Content-type": "application/json",

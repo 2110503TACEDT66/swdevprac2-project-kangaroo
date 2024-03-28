@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2'
+
 interface FormData {
     name: string;
     tel: string;
@@ -23,6 +25,7 @@ export default async function registerUser({name, tel, email, password, role}: F
 
     if (!response.ok) {
         throw new Error("Failed to register")
+        
     }
 
     return await response.json()

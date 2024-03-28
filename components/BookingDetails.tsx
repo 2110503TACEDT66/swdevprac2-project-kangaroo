@@ -7,6 +7,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import CustomButton from "./CustomButton";
 import PictureParser from "./PictureParser";
 import deleteBooking from "@/libs/deleteBooking";
+import Swal from 'sweetalert2'
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -37,9 +38,18 @@ export function BookingDetails({
       await deleteBooking(_id, token);
       closeModal();
       setShowConfirmation(false);
-      window.location.reload();
+      Swal.fire({
+        title: "Good job!",
+        text: "Delete booking successful",
+        icon: "success"
+      });
     } catch (error) {
       console.error("Error deleting booking:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Delete booking failed"
+      });
     }
   };
 

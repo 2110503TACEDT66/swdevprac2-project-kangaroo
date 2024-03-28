@@ -10,6 +10,7 @@ import PictureParser from "@/components/PictureParser";
 import Image from "next/image";
 import CustomButton from "@/components/CustomButton";
 import Swal from 'sweetalert2'
+import Link from "next/link";
 
 function CardDetailPage({ params }: { params: { cid: string } }) {
   const [carDetail, setCarDetail] = useState<any>(null);
@@ -44,8 +45,18 @@ function CardDetailPage({ params }: { params: { cid: string } }) {
         }
       );
       if (!response.ok) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Booking failed"
+          });
         throw new Error("Failed to create booking");
       }
+      Swal.fire({
+        title: "Good job!",
+        text: "Booking successful",
+        icon: "success"
+      });
       
     } catch (error) {
       console.log(error);
@@ -98,12 +109,14 @@ function CardDetailPage({ params }: { params: { cid: string } }) {
                 }}
               />
             </div>
+            <Link href="/">
             <CustomButton
               title="Confirm Booking"
               textStyles=""
               containerStyles="w-full py-[16px] rounded-full bg-primary-blue text-white "
               handleClick={handleSubmit}
             />
+            </Link>
           </div>
         </div>
       </div>

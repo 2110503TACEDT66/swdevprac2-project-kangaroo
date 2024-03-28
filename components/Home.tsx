@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { CarCard } from "@/components/CarCard";
 import { BookingCard } from "@/components/BookingCard";
@@ -9,51 +9,44 @@ import { getCars } from "@/libs/getCars";
 import { CarItems, imgProps } from "@/types";
 import { useEffect, useState } from "react";
 
+export default function CarLists() {
+  const [cars, setCars] = useState<CarItems[] | null>(null);
 
-    export default function CarLists() {
-    
-        const [cars, setCars] = useState<CarItems[]|null>(null);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-          useEffect(() => {
-            fetchData();
-          }, []);
-        
-          const fetchData = async () => {
-            try {
-              const allCars = await getCars();
-              setCars(allCars.data);
-            } catch (error) {
-              console.error('Failed to fetch cars:', error);
-            }
-          };
+  const fetchData = async () => {
+    try {
+      const allCars = await getCars();
+      setCars(allCars.data);
+    } catch (error) {
+      console.error("Failed to fetch cars:", error);
+    }
+  };
 
-      
-      
-          // const allCars = await getCars({
-          //   manufacturer: searchParams.manufacturer || '',
-          //   year: searchParams.year || '',
-          //   limit: searchParams.limit || 10,
-          //   model: searchParams.model || ''
-          // })
-          // console.log(allCars)
-      
-        const isDataEmpty =   !cars || cars.length < 1;
-        
-        return (
-            <>
-              {!isDataEmpty ? (
-                <section>
-                 <div className="home__cars-wrapper">
-                    {cars?.map((car:any) => (<CarCard car={car} />))}
-                 </div>
-                </section>
-              ) : (
-                <div className="home__error-container">
-                  <h2 className="text-black text-xl font-bold animate-wiggle animate-infinite">Oops, no results</h2>
-                  {/* <p>{cars?.message}</p> */}
-                </div>
-              )}
-           </>
-        );
-      }
+  const isDataEmpty = !cars || cars.length < 1;
 
+  return (
+    <>
+      {!isDataEmpty ? (
+        <section>
+          <div className="home__cars-wrapper">
+            {cars?.map((car: any) => (
+              <CarCard car={car} />
+            ))}
+          </div>
+        </section>
+      ) : (
+        <div className="mt-16 flex justify-center items-center flex-row">
+          <div
+            className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent text-primary-blue"
+            role="loading"
+          >
+            <span className="hidden">Loading...</span>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

@@ -1,6 +1,6 @@
 'use client'
 
-import { Booking, CarProps } from "@/types";
+import { BookingItem, CarProps } from "@/types";
 import { useState, useEffect } from "react";
 import CustomButton from "./CustomButton";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import { BookingDetails } from "./BookingDetails";
 import getCar from "@/libs/getCar";
 import PictureParser from "./PictureParser";
 
-export function BookingCard({booking, token} : {booking:Booking, token: string}) {
+export function BookingCard({booking, token} : {booking:BookingItem, token: string}) {
     const { bookingDateFrom, bookingDateTo } = booking
     const [ bookedCar, setBookedCar ] = useState<CarProps|null>(null)
 
@@ -82,8 +82,7 @@ export function BookingCard({booking, token} : {booking:Booking, token: string})
                 </div>
                 <div className="car-card__btn-container">
                     <CustomButton title="View Booking" 
-                    containerStyles="w-full py-[16px] rounded-full bg-primary-blue" textStyles="text-white text-[14px] 
-                    leading-[17px] font-bold" rightIcon="/right-arrow.svg" handleClick={()=>{setIsOpen(true)}}/>
+                    containerStyles="w-full py-[16px] rounded-full bg-primary-blue" rightIcon="/right-arrow.svg" handleClick={()=>{setIsOpen(true)}}/>
                 </div>
             </div>
 

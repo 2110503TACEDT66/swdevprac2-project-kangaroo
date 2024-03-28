@@ -40,7 +40,7 @@ export interface filterProps {
   model?: string;
 }
 
-export interface Booking {
+export interface BookingItem {
   _id: string;
   bookingDateFrom: string;
   bookingDateTo: string;
@@ -57,7 +57,7 @@ export interface CarItems {
   Color: string;
   FeePerDay: string;
   LicensePlate: string;
-  bookings: Booking[];
+  bookings: BookingItem[];
   id: string;
 }
 

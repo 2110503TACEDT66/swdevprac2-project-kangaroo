@@ -1,11 +1,11 @@
 "use client";
-import { Booking, CarItems } from "@/types";
+import { BookingItem, CarItems } from "@/types";
 import { useEffect, useState } from "react";
 import { BookingCard } from "@/components/BookingCard";
 import getBookings from "@/libs/getBookings";
 
 export default function BookingLists(props: { token: string }) {
-  const [bookings, setBookings] = useState<Booking[] | null>(null);
+  const [bookings, setBookings] = useState<BookingItem[] | null>(null);
 
   useEffect(() => {
     fetchData();

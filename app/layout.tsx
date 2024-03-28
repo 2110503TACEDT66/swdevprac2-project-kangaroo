@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import NextAuthProvider from "@/providers/NextAuthProvider";
-
 import "./globals.css";
-
-import Navbar from '../components/Navbar'
+import Navbar from "../components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -19,16 +16,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  const nextAuthSession = await getServerSession(authOptions)
+  const nextAuthSession = await getServerSession(authOptions);
 
   return (
     <html lang="en">
       <body className="relative">
-        <NextAuthProvider session={ nextAuthSession }>
-          <Navbar/>
+        <NextAuthProvider session={nextAuthSession}>
+          <Navbar />
           {children}
-          <Footer/>
+          <Footer />
         </NextAuthProvider>
       </body>
     </html>

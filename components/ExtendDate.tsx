@@ -72,7 +72,14 @@ export default function ExtendDate({ bookingID, token }: { bookingID: string, to
                             })}
                     </div>
                 </div>
-                <div className="flex mt-12 text-[24px] font-semibold justify-center">How many days would you like to extend?</div>
+                <div className="m-6 flex justify-center">
+                    <p className="flex m-6 text-[32px] font-extrabold">
+                        <span className="self-start text-[14px] font-semibold">฿</span>
+                        {booking.car.FeePerDay}
+                        <span className="self-end text-[14px] font-medium">/day</span>
+                    </p>
+                </div>
+                <div className="flex mt-6 text-[24px] font-semibold justify-center">How many days would you like to extend?</div>
                 <div className="flex mt-6 justify-center">
                     <button className="-translate-y-3 px-4 py-2 mr-2 text-gray-600 text-[48px]" onClick={handleDecrease}>
                         &lt;
@@ -82,17 +89,25 @@ export default function ExtendDate({ bookingID, token }: { bookingID: string, to
                         &gt;
                     </button>
                 </div>
-                <div className="flex justify-center">
-                    <Link href="/booking">
-                        <button
-                            disabled={isSubmitting}
-                            className={`shadow bg-emerald-500 hover:bg-emerald-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded `}
-                            type="submit"
-                            onClick={handleConfirm}
-                        >
-                            Confirm
-                        </button>
-                    </Link>
+                <div className="mt-6 flex justify-between items-center">
+                    <div className="">
+                        <p className="flex text-[32px] font-extrabold">
+                            <span className="self-start text-[14px] font-semibold">฿</span>
+                            {`${(parseInt(booking.car.FeePerDay) * extensionDays * 1000).toLocaleString()}`}
+                        </p>
+                    </div>
+                    <div className="">
+                        <Link href="/booking">
+                            <button
+                                disabled={isSubmitting}
+                                className={`shadow bg-emerald-500 hover:bg-emerald-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded `}
+                                type="submit"
+                                onClick={handleConfirm}
+                            >
+                                Confirm
+                            </button>
+                        </Link>
+                    </div>
                 </div>
             </div>
             : null

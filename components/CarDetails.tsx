@@ -239,8 +239,6 @@ interface CarDetailsProps {
                     <CustomButton
                       title="Booking"
                       containerStyles="w-full py-[16px] rounded-full bg-primary-blue mt-5"
-                      textStyles="text-white text-[14px] 
-                    leading-[17px] font-bold"
                        handleClick={()=>{handleClickBtn(_id)}}
                     />
                     

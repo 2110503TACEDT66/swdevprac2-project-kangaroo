@@ -1,5 +1,5 @@
 "use client";
-import { Booking, CarProps } from "@/types";
+import { BookingItem, CarProps } from "@/types";
 import { useState } from "react";
 import Image from "next/image";
 import { Fragment } from "react";
@@ -17,7 +17,7 @@ interface CarDetailsProps {
   isOpen: boolean;
   closeModal: () => void;
   car: CarProps;
-  booking: Booking;
+  booking: BookingItem;
   token: string;
 }
 

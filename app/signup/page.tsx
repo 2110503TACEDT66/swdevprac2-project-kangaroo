@@ -2,6 +2,7 @@
 import { Link } from "@mui/material";
 import { useState, ChangeEvent, FormEvent } from "react";
 import registerUser from "@/libs/registerUser";
+import CustomButton from "@/components/CustomButton";
 
 interface FormData {
   name: string;
@@ -61,7 +62,7 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="mt-48 h-full animate-fade-up">
+    <div className="mt-48 h-full animate-fade-up bg-primary-blue-100 p-8 hover:shadow-md rounded-3xl text-medium">
       <form className="w-full max-w-sm" onSubmit={handleSubmit}>
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
@@ -163,14 +164,15 @@ export default function SignUpPage() {
         <div className="md:flex md:items-center">
           <div className="md:w-1/3"></div>
           <div className="md:w-2/3">
-            <button
+            {/* <button
               disabled={formSubmitted}
               onClick={handleClick}
               className={`shadow bg-${formSubmitted ? "emerald" : "violet"}-500 hover:bg-${formSubmitted ? "emerald" : "violet"}-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded ${animateClass}`}
               type="submit"
             >
               {formSubmitted ? "Success" : "Sign Up"}
-            </button>
+            </button> */}
+            <CustomButton title="Sign Up" containerStyles="bg-primary-blue" btnType="submit" handleClick={handleClick}/>
           </div>
         </div>
       </form>

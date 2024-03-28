@@ -38,7 +38,7 @@ export default function ExtendDate({ bookingID, token }: { bookingID: string, to
     const handleConfirm = async () => {
         if (booking && !isSubmitting) {
             setIsSubmitting(true); 
-            const date = DateAdder(booking.bookingDateFrom, extensionDays)
+            const date = DateAdder(booking.bookingDateTo, extensionDays)
             try {
                 //console.log(DateAdder(booking.bookingDateFrom, extensionDays));
                 await updateBooking(booking._id, date, token);

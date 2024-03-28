@@ -1,5 +1,5 @@
 "use client"
-import { Booking } from "@/types";
+import { BookingItem } from "@/types";
 import { useEffect,useState } from "react";
 import getBooking from "@/libs/getBooking";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import DateAdder from "@/utils/DateAdder";
 import updateBooking from "@/libs/updateBooking";
 
 export default function ExtendDate({ bookingID, token }: { bookingID: string, token: string }) {
-    const [booking, setBooking] = useState<Booking | null>(null);
+    const [booking, setBooking] = useState<BookingItem | null>(null);
     const [extensionDays, setExtensionDays] = useState<number>(0);
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 

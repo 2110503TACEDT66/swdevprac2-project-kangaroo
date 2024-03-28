@@ -1,6 +1,6 @@
 import BookingLists from "@/components/Booking";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/libs/authOptions";
 
 export default async function bookings(){
   const session = await getServerSession(authOptions)

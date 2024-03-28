@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "../libs/authOptions";
 import CustomButton from "./CustomButton";
 import { IconButton } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';

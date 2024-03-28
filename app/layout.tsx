@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "../libs/authOptions";
 import NextAuthProvider from "@/providers/NextAuthProvider";
 import "./globals.css";
 import Navbar from "../components/Navbar";

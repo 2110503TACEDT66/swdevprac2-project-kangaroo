@@ -1,7 +1,7 @@
 import Hero from "@/components/Hero";
 import CarLists from "@/components/Home";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "../libs/authOptions";
 import getUser from "@/libs/getUser";
 
 export default async function Home() {

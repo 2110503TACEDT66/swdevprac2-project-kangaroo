@@ -5,6 +5,7 @@ import getBooking from "@/libs/getBooking";
 import Link from "next/link";
 import DateAdder from "@/utils/DateAdder";
 import updateBooking from "@/libs/updateBooking";
+import Swal from 'sweetalert2'
 
 export default function ExtendDate({ bookingID, token }: { bookingID: string, token: string }) {
     const [booking, setBooking] = useState<BookingItem | null>(null);
@@ -41,8 +42,18 @@ export default function ExtendDate({ bookingID, token }: { bookingID: string, to
             try {
                 //console.log(DateAdder(booking.bookingDateFrom, extensionDays));
                 await updateBooking(booking._id, date, token);
+                Swal.fire({
+                    title: "Good job!",
+                    text: "Edit booking successful",
+                    icon: "success"
+                  });
             } catch (error) {
                 console.error('Failed to update booking:', error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Edit booking failed"
+                  });
             } finally {
                 setIsSubmitting(false);
             }

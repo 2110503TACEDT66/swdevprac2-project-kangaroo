@@ -3,6 +3,8 @@ import { Link } from "@mui/material";
 import { useState, ChangeEvent, FormEvent } from "react";
 import registerUser from "@/libs/registerUser";
 import CustomButton from "@/components/CustomButton";
+import Swal from 'sweetalert2'
+
 
 interface FormData {
   name: string;
@@ -43,12 +45,18 @@ export default function SignUpPage() {
       setFormSubmitted(true);
       registerUser(formData);
     }
+    Swal.fire({
+      title: "Good job!",
+      text: "Sign up successful",
+      icon: "success"
+    });
   };
-
+  var isClick = false;
   const handleClick = () => {
     if (!formSubmitted) {
       setAnimateClass("animate-jump animate-once");
       setTimeout(() => setAnimateClass(""), 500);
+      isClick=true
     }
   };
 
@@ -172,7 +180,13 @@ export default function SignUpPage() {
             >
               {formSubmitted ? "Success" : "Sign Up"}
             </button> */}
+           
             <CustomButton title="Sign Up" containerStyles="bg-primary-blue" btnType="submit" handleClick={handleClick}/>
+            
+           
+           
+            
+            
           </div>
         </div>
       </form>

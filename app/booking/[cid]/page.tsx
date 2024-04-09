@@ -25,7 +25,7 @@ function CardDetailPage({ params }: { params: { cid: string } }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5050/api/v1/cars/${params.cid}/bookings`,
+        `${process.env.BACKEND_URL}/api/v1/cars/${params.cid}/bookings`,
         {
           method: "POST",
           headers: {

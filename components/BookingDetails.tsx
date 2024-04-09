@@ -38,11 +38,8 @@ export function BookingDetails({
       await deleteBooking(_id, token);
       closeModal();
       setShowConfirmation(false);
-      Swal.fire({
-        title: "Good job!",
-        text: "Delete booking successful",
-        icon: "success"
-      });
+      window.location.reload()
+      
     } catch (error) {
       console.error("Error deleting booking:", error);
       Swal.fire({
